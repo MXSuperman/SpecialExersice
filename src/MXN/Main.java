@@ -54,13 +54,33 @@ public class Main {
         int old = 25;
         int money = 60_000;
         int wantedSum = 330_000;
-        float procYear = 0.10f;
-        if (old <= 23);{
-            System.out.println(procYear * wantedSum - money / 12);
+        int dollarMonth;
+        int maxMonthPayment = money / 2;
+        double extraProc = 0.1;
+
+        if (old < 23) {
+            extraProc += 0.01;
+            if (money >= 80_000) {
+                extraProc -= 0.007;
+            }
+            dollarMonth = (int) (wantedSum * (extraProc + 1) / 12);
+            if (dollarMonth > salary * 0.5) {
+                System.out.println("Максимальный платеж при ЗП " + money + " равен " + maxMonthPayment + " рублей " + " Платеж по кредиту " + dollarMonth + " рублей. Отказано.");
+            } else {
+                System.out.println("Максимальный платеж при ЗП " + money + " равен " + dollarMonth + " рублей. " + " Платеж по кредиту " + maxMonthPayment + " рублей. Одобрено.");
+            }
         }
-        System.out.println("Максимальный платеж при ЗП " + money + " равен " + money / 2 + " рублеӣ");
-        if (old <= 30); {
-            System.out.println(wantedSum / 12 + money * procYear);
+        else if (23 <= old && old < 30) {
+            extraProc += 0.005;
+            if (money >= 80_000) {
+                extraProc -= 0.007;
+            }
+            dollarMonth  = (int) (wantedSum * (extraProc + 1) / 12);
+            if (dollarMonth > money * 0.5) {
+                System.out.println("Максимальный платеж при ЗП " + money + " равен " + maxMonthPayment + " рублей. Платеж по кредиту " + dollarMonth + " рублей. Отказано.");
+            } else {
+                System.out.println("Максимальный платеж при ЗП " + money + " равен " + dollarMonth + " рублей. Платеж по кредиту " + maxMonthPayment + " рублей. Одобрено.");
+            }
         }
+            }
         }
-    }
